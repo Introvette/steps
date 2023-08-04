@@ -9,17 +9,17 @@
     <h1>Welcome!</h1>
     <form>
         <div class="content">
-            <div><h1>First</h1>
+            <div class="step"><h1>First</h1>
                 <div>
                     <a href="#">Next</a>
                 </div>
             </div>
-            <div class="step"><h1>Second</h1>
+            <div class="step hiddenStep"><h1>Second</h1>
                 <div>
                     <a href="#">Next</a>
                 </div>
             </div>
-            <div class="step"><h1>Third</h1>
+            <div class="step hiddenStep"><h1>Third</h1>
                 <div>
                     <a href="#">Next</a>
                 </div>
@@ -29,15 +29,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            // $('.step').css('display', 'none');
+             $('.hiddenStep').css('display', 'none');
             $('a').click(function(event) {
                 event.preventDefault();
-                // console.log($(this))
-                var parent = $(this).parent().parent();
-                // console.log(parent);
-                var mainContent = $('.content>div')
-                var index = mainContent.index(parent);
-                console.log(index);
+                var parent = $(this).closest('.step');
+                var mainContent = $('.content>.step')
+                var index = mainContent.index(parent)+1;
+                parent.css('display','none');
+                mainContent.eq(index).css('display', 'block')
             })
         })
     </script>
